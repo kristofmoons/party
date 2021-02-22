@@ -4,11 +4,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Euphoria+Script&family=Lato:wght@100;400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/CSS/style.css}" href="/CSS/style.css" />
+
+    <title>home</title>
 </head>
 <body>
 <h1> hoi</h1>
-<p th:text="${mySpecialNumber}">mySpecialNumber</p>
-
+<header th:replace="fragments/header :: header"></header>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
