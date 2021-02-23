@@ -1,20 +1,17 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Euphoria+Script&family=Lato:wght@100;400&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" media="all"
-          th:href="@{/CSS/style.css}" href="/CSS/style.css" />
-
-    <title>home</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Let's Party!</title>
 </head>
 <body>
-<h1> hoi</h1>
-<header th:replace="fragments/header :: header"></header>
-<footer th:replace="fragments/footer :: footer"></footer>
+<div th:replace="fragments/header :: header">Header</div>
+
+
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
+
 </body>
 </html>

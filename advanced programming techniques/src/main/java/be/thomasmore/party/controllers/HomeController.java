@@ -46,15 +46,14 @@ public class HomeController {
         return date;
     }
 
-    @GetMapping({"/venuedetails/{venueIndex}", "/venuedetails"})
-    public String venueDetails(Model model, @PathVariable(required = false) Double venueIndex){
-        if (venueIndex != null && venueNames.length > Math.floor(venueIndex) && Math.floor(venueIndex) >= 0) {
-            String venue = venueNames[(int)Math.floor(venueIndex)];
-            model.addAttribute("venueName", venue);
-        } else {
-            model.addAttribute("venueName", "Choose a number between 0 and " + (venueNames.length-1));
+    @GetMapping({"/venuedetails", "/venuedetails/{index}"})
+    public String venueDetails(Model model,
+                               @PathVariable(required = false)  Integer index) {
+        if (index!=null && index>=0 && index<venueNames.length ) {
+            model.addAttribute("venueName", venueNames[index]);
+            model.addAttribute("prevIndex", index>0 ? index-1 : venueNames.length-1);
+            model.addAttribute("nextIndex", index<venueNames.length-1 ? index+1 : 0);
         }
-        model.addAttribute("venueIndexMax", venueNames.length-1);
         return "venuedetails";
     }
 
