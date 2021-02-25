@@ -1,5 +1,6 @@
 package be.thomasmore.party.controllers;
 
+import model.Venue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,21 @@ import java.time.format.FormatStyle;
 @Controller
 public class HomeController {
     private final String[] venueNames = {"De Loods", "De Club", "De Hangar", "Zapoi", "Kuub", "Cupa Libre"};
+    private final Venue[] venues = {
+            new Venue("boesj", " https://www.facebook.com/search/top?q=boesjkameri",
+                    100,false,true,false,false,"Mechelen", 1),
+            new Venue("t 'ille Maline", " https://www,timeline.be",
+                    400,true,true,false,false,"Mechelen", 6),
+            new Venue("Nekkerhal", " https://www.nekkerhalbrusselsnorth.com/",
+                    8800,false,true,false,false,"Mechelen", 2),
+            new Venue("Nekkerbox", " https://www.nekkerhalbrusselsnorth.com/organiseer/nekkerbox/",
+                    2500,false,true,false,false,"Mechelen", 2),
+
+
+
+
+
+    };
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
