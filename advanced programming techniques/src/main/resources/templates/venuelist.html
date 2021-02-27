@@ -13,7 +13,7 @@
     <div class="row1content">
         <h2>venues</h2>
         <div th:each="venueName: ${venueNames}">
-            <a class="buttonLook mediumButton"
+            <a class="buttonLook smallButton"
                th:href="@{|/venuedetails/${venueNameStat.index}|}"
                th:text="${venueName}">venue name</a>
         </div>

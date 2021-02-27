@@ -1,5 +1,7 @@
 package be.thomasmore.party.controllers;
 
+import model.Venue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,15 @@ import java.time.format.FormatStyle;
 
 @Controller
 public class HomeController {
-    private final String[] venueNames = {"De Loods", "De Club", "De Hangar", "Zapoi", "Kuub", "Cupa Libre"};
+    private final Venue[] venues = {new Venue("De Loods"),
+            new Venue("De Club"),
+            new Venue("De Hangar"),
+            new Venue("Zapoi"),
+            new Venue("Kuub"),
+            new Venue("Cuba Libre"),
+            new Venue("Boesj", "https://www.facebook.com/boesjkammeree/", 100, false, true, false, false, "Mechelen", 1)};
+    @Autowired
+    private VenueRepository venueRepository;
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
@@ -48,18 +58,31 @@ public class HomeController {
 
     @GetMapping({"/venuedetails", "/venuedetails/{index}"})
     public String venueDetails(Model model,
-                               @PathVariable(required = false)  Integer index) {
-        if (index!=null && index>=0 && index<venueNames.length ) {
-            model.addAttribute("venueName", venueNames[index]);
-            model.addAttribute("prevIndex", index>0 ? index-1 : venueNames.length-1);
-            model.addAttribute("nextIndex", index<venueNames.length-1 ? index+1 : 0);
+                               @PathVariable(required = false) Integer index) {
+        if (index != null && index >= 0 && index < venues.length) {
+            model.addAttribute("venue", venues[index]);
+            model.addAttribute("prevIndex", index > 0 ? index - 1 : venues.length - 1);
+            model.addAttribute("nextIndex", index < venues.length - 1 ? index + 1 : 0);
+        }
+        return "venuedetails";
+    }
+    @GetMapping({"/venuedetailsbyid","/venuedetailsbyid/{id}"})
+    public String venueDetailsById(Model model,
+                                   @PathVariable(required = false)Integer id) {
+        model.addAttribute("venue", venueRepository.findById(id).get());
+        if (id != null && id >= 1 && id < venues.length) {
+            model.addAttribute("venue", venues[id]);
+            model.addAttribute("prevId", id > 1 ? id - 1 : venues.length - 1);
+            model.addAttribute("nextId", id < venues.length - 1 ? id + 1 : 0);
+
         }
         return "venuedetails";
     }
 
     @GetMapping("/venuelist")
-    public String venueList(Model model){
-        model.addAttribute("venueName", venueNames);
+    public String venueList(Model model) {
+        Iterable<Venue>venues= venueRepository.findAll();
+        model.addAttribute("venues", venues);
         return "venuelist";
     }
 
