@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     box-sizing: border-box;
@@ -100,7 +99,7 @@ a.buttonLook:hover {
 }
 
 a.buttonLook:active {
-    background-color: cornflowerblue;
+    background-color: darkblue;
     color: whitesmoke;
 }
 
@@ -128,12 +127,16 @@ a.menuButton {
 
 a.linkLook {
     background-color: transparent;
-    color: #6A8E7F;
+    color: cornflowerblue;
 }
 
 a.linkLook:hover {
     background-color: transparent;
-    color: #989572;
+    color: blue;
+}
+a.LinkLook:active {
+    background-color: darkblue;
+    color: #EDC7CF;
 }
 
 
@@ -178,5 +181,3 @@ a.linkLook:hover {
     padding: 60px 0;
     text-align: center;
 }
-
-
