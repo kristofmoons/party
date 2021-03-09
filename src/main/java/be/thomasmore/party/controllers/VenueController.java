@@ -2,11 +2,14 @@ package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.VenueRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -14,6 +17,9 @@ import java.util.Optional;
 public class VenueController {
     @Autowired
     private VenueRepository venueRepository;
+
+    private Logger logger = LoggerFactory.getLogger(VenueController.class);
+
 
     @GetMapping({"/venuedetails", "/venuedetails/{id}"})
     public String venueDetails(Model model,
@@ -30,53 +36,37 @@ public class VenueController {
         return "venuedetails";
     }
 
-    @GetMapping({"/venuelist", "/venuelist/{filterkey}"})
-    public String venueList(Model model, @PathVariable(required = false) String filterkey) {
+    @GetMapping("/venuelist")
+    public String venueList(Model model) {
         Iterable<Venue> venues = venueRepository.findAll();
+        long nrOfVenues = venueRepository.count();
+        model.addAttribute("nrOfVenues", nrOfVenues);
         model.addAttribute("venues", venues);
+        model.addAttribute("showFilters", false);
         return "venuelist";
     }
 
-    @GetMapping("/venuelist/outdoor/{filter}")
-    public String venueListOutdoor(Model model,
-                                   @PathVariable String filter) {
-        Iterable<Venue> venues = venueRepository.findByOutdoor(filter.equals("yes"));
-        model.addAttribute("venues", venues);
-        model.addAttribute("filterOutdoor", filter.equals("yes") ? "yes" : "no");
-        return "venuelist";
-    }
-
-    @GetMapping("/venuelist/indoor/{filter}")
-    public String venueListIndoor(Model model,
-                                  @PathVariable String filter) {
-        Iterable<Venue> venues = venueRepository.findByIndoor(filter.equals("yes"));
-        model.addAttribute("venues", venues);
-        model.addAttribute("filterIndoor", filter.equals("yes") ? "yes" : "no");
-        return "venuelist";
-    }
-
-    @GetMapping("/venuelist/size/{filter}")
-    public String venueListSize(Model model,
-                                @PathVariable String filter) {
-        Iterable<Venue> venues;
-        switch (filter) {
-            case "S":
-                venues = venueRepository.findByCapacityBetween(0, 200);
-                break;
-            case "M":
-                venues = venueRepository.findByCapacityBetween(200, 600);
-                break;
-            case "L":
-                venues = venueRepository.findByCapacityGreaterThan(600);
-                break;
-            default:
+    @GetMapping("/venuelist/filter")
+    public String venueListFilter(Model model, @RequestParam(required = false) Integer minCapacity, @RequestParam(required = false) Integer maxCapacity){
+        logger.info("venueListWithFilter -- min=%d, max=%d", minCapacity, maxCapacity);
+        Iterable<Venue> venues = venueRepository.findAll();
+        if (minCapacity != null){
+            if (maxCapacity != null){
+                venues = venueRepository.findByCapacityBetween(minCapacity, maxCapacity);
+            }else {
+                venues = venueRepository.findByCapacityGreaterThan(minCapacity);
+            }
+        } else {
+            if (maxCapacity != null) {
+                venues = venueRepository.findByCapacityBetween(0, maxCapacity);
+            } else {
                 venues = venueRepository.findAll();
-                filter = null;
-                break;
+            }
         }
+        long nrOfVenues = venueRepository.count();
+        model.addAttribute("nrOfVenues", nrOfVenues);
         model.addAttribute("venues", venues);
-        model.addAttribute("filterSize", filter);
+        model.addAttribute("showFilters", true);
         return "venuelist";
     }
-
 }
