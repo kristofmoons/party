@@ -59,7 +59,10 @@ public class VenueController {
         Iterable<Venue> venues;
         venues = venueRepository.findByCriteria(minCapacity, maxCapacity, maxDistance,food,indoor,outdoor);
 
-        long nrOfVenues = venueRepository.count();
+        int nrOfVenues = 0;
+        for (Venue v: venues){
+            nrOfVenues++;
+        }
         model.addAttribute("nrOfVenues", nrOfVenues);
         model.addAttribute("venues", venues);
         model.addAttribute("showFilters", true);
