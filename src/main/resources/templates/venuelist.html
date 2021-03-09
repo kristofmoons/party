@@ -26,8 +26,57 @@
                     <label for ="maxCapacity" class="filtername">max</label>
                     <input type="number" id="maxCapacity" name="maxCapacity" value="${maxCapacity}" step="50"> personen
                 </div>
+
+                <h3>distance from public transport</h3>
+                <div class="onefilter">
+                    <label for="maxDistance" class="filtername">max</label>
+                    <input type="number" id="maxDistance" name="maxDistance" value="" step="1"> km
+                </div>
+
+                <h3>food</h3>
+                <div class="onefilter">
+                    <label for="food_yes" class="filtername">yes</label>
+                    <input type="radio" id="food_yes" name="filterFood" value="yes">
+                </div>
+                <div class="onefilter">
+                    <label for="food_no" class="filtername">no</label>
+                    <input type="radio" id="food_no" name="filterFood" value="no">
+                </div>
+                <div class="onefilter">
+                    <label for="food_all" class="filtername">all</label>
+                    <input type="radio" id="food_all" name="filterFood" value="all">
+                </div>
+
+                <h3>indoor</h3>
+                <div class="onefilter">
+                    <label for="indoor_yes" class="filtername">yes</label>
+                    <input type="radio" id="indoor_yes" name="filterIndoor" value="yes">
+                </div>
+                <div class="onefilter">
+                    <label for="indoor_no" class="filtername">no</label>
+                    <input type="radio" id="indoor_no" name="filterIndoor" value="no">
+                </div>
+                <div class="onefilter">
+                    <label for="indoor_all" class="filtername">all</label>
+                    <input type="radio" id="indoor_all" name="filterIndoor" value="all">
+                </div>
+
+                <h3>outdoor</h3>
+                <div class="onefilter">
+                    <label for="outdoor_yes" class="filtername">yes</label>
+                    <input type="radio" id="outdoor_yes" name="filterOutdoor" value="yes">
+                </div>
+                <div class="onefilter">
+                    <label for="outdoor_no" class="filtername">no</label>
+                    <input type="radio" id="outdoor_no" name="filterOutdoor" value="no">
+                </div>
+                <div class="onefilter">
+                    <label for="outdoor_all" class="filtername">all</label>
+                    <input type="radio" id="outdoor_all" name="filterOutdoor" value="all">
+                </div>
             </form>
         </div>
+
 
         <div class="venuelist" th:unless="${showFilters}">
             <a class="buttonLook filterButton"
