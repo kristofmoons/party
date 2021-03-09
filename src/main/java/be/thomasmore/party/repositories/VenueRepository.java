@@ -13,7 +13,12 @@ public interface VenueRepository extends CrudRepository<Venue, Integer> {
  //   Iterable<Venue> findByCapacityGreaterThan(int min);
 //    @Query("SELECT v FROM Venue v WHERE (:min IS NULL OR:min <= v.capacity) AND ( :max IS NULL OR v.capacity <=  :max )")
 //    List<Venue> findByCriteria(@Param("min") Integer minCapacity, @Param("max") Integer maxCapacity);
-    @Query("select v from  Venue v where (?1 IS NULL or v.capacity >= ?1)and (?2 IS NULL or v.capacity <= ?2)and (?3 IS NULL or v.distanceFromPublicTransportInKm <= ?3)")
-    List<Venue> findByCriteria(Integer jef,Integer joske, Integer josephienke);
+    @Query("select v from  Venue v where (?1 IS NULL or v.capacity >= ?1)and" +
+            " (?2 IS NULL or v.capacity <= ?2)and" +
+            " (?3 IS NULL or v.distanceFromPublicTransportInKm <= ?3)and" +
+            " (?4 IS NULL or v.foodProvided = ?4)and " +
+            " (?5 is null or v.indoor= ?5)and " +
+            " (?6 is NULL OR v.outdoor= ?6)")
+    List<Venue> findByCriteria(Integer jef,Integer joske, Integer josephienke, Boolean jefke, Boolean vrydio, Boolean gewoontoon);
 
 }
