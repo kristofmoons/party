@@ -55,6 +55,15 @@
 
                 </a></div>
             </div>
+
+            <div class="venueinfo" th:unless="${party.getAnimals().isEmpty() } ">
+
+                <h2>who goes</h2>
+                <div th:each="animal:${party.getAnimals()}"><a th:text="${artist.getName()}"
+                                                               th:href="@{|../artistdetails/${animal.getId()}  |}">
+
+                </a></div>
+            </div>
         <!--        </div>-->
 
         <!--    </div>-->

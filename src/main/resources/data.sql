@@ -192,3 +192,26 @@ INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (2, 2);
 INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (3, 3);
 INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (3, 5);
 INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (4, 5);
+
+insert into ANIMAL (ID, NAME, CITY, BIO)
+values (1, 'Jos XXX', 'Duffel', 'A hardgoing music fan');
+insert into ANIMAL (ID, NAME, CITY, BIO)
+values (2, 'Maaike Verschaepen', 'Mechelen', 'A young lade loving the sound of life');
+insert into ANIMAL (ID, NAME, CITY, BIO)
+values (3, 'Kandida Ulala', 'Sint-Katelijne-Waver', 'Music is my heartbeat');
+insert into ANIMAL (ID, NAME, CITY, BIO)
+values (4, 'Frida Kroket', 'Mechelen', 'Music is my passion, just like fries are my job');
+insert into ANIMAL (ID, NAME, CITY, BIO)
+values (5, 'Peppa Pig', 'The hill', 'Oink Oink');
+insert into ANIMAL (ID, NAME, CITY, BIO)
+values (6, 'Kristof Moons', 'Duffel', 'Vrydi helpt mij met code');
+
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (2, 1);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (3, 1);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (4, 1);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (2, 2);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (3, 2);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (3, 4);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (4, 1);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (1, 5);
+insert into ANIMAL_PARTIES (ANIMALS_ID, PARTIES_ID) values (6, 4);
