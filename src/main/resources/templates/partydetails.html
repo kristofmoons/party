@@ -46,6 +46,15 @@
             <div class="infoLineValue"><a th:href="@{|../venuedetails/${party.getVenue().getId()}|}" th:text="${party.getVenue.getVenueName() }"></a>
 
             </div>
+
+            <div class="venueinfo" th:unless="${party.getArtists().isEmpty() } ">
+
+                <h2> artists</h2>
+                <div th:each="artist:${party.getArtists()}"><a th:text="${artist.getArtistName()}"
+                                                   th:href="@{|../artistdetails/${artist.getId()}  |}">
+
+                </a></div>
+            </div>
         <!--        </div>-->
 
         <!--    </div>-->
