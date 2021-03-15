@@ -22,6 +22,7 @@
         <h2 th:text="${venue.venueName}">venuedetails</h2>
         <div class="venueinfo">
             <div class="infoLine">
+
                 <div class="infoLineName">info:</div>
                 <div class="infoLineValue">
                     <a th:href="${venue.linkMoreInfo}" th:text="${venue.linkMoreInfo}" target="_blank">linkMoreIfo</a>
@@ -57,6 +58,15 @@
                 <div class="infoLineName">afstand van openbaar vervoer:</div>
                 <div class="infoLineValue" th:text="${venue.distanceFromPublicTransportInKm} + ' km'">stad</div>
             </div>
+
+        </div>
+        <div class="venueinfo" th:if="${parties } !=null">
+
+            <h2> parties</h2>
+            <div th:each="party:${parties}"><a th:text="${party.getName()}"
+                                               th:href="@{|../partydetails/${party.getId()}  |}">
+
+            </a></div>
         </div>
     </div>
     <div class="row1content" th:unless="${venue}">
