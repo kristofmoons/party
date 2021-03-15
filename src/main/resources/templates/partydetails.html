@@ -40,6 +40,12 @@
             <p>Extra info</p>
             <p th:text="${party.getExtraInfo()}"></p>
         </div>
+
+        <div class="infoLine">
+            <div class="infoLineName">where:</div>
+            <div class="infoLineValue"><a th:href="@{|../venuedetails/${party.getVenue().getId()}|}" th:text="${party.getVenue.getVenueName() }"></a>
+
+            </div>
         <!--        </div>-->
 
         <!--    </div>-->
