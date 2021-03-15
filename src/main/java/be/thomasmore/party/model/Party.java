@@ -18,6 +18,17 @@ public class Party {
     @ManyToOne
     private Venue venue;
 
+    public Party() {
+    }
+
+    public Party(String name,Integer pricePresaleInEur,Integer priceInEur,String extraInfo) {
+        this.name = name;
+        this.pricePresaleInEur = pricePresaleInEur;
+        this.priceInEur = priceInEur;
+        this.extraInfo= extraInfo;
+
+    }
+
     public int getId() {
         return id;
     }

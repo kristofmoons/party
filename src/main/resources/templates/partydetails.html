@@ -9,9 +9,46 @@
 <div th:replace="fragments/header :: header">Header</div>
 
 
+<div class="row1" th:if="${party}!=null">
+
+    <div class="prevButtonDiv">
+        <a class="buttonLook smallButton" th:href="@{|/partydetails/${prevId}|}">&lt;</a>
+    </div>
+    <div class="nextButtonDiv">
+        <a class="buttonLook smallButton" th:href="@{|/partydetails/${nextId}|}">&gt;</a>
+    </div>
+
+    <h2 th:text="${party.getName()}">partydetails</h2>
+    <h3 th:text="${party.getDate()}">datum</h3>
+    <div class="venueinfo">
+
+        <div class="infoLine" th:if="${party.getPricePresaleInEur()} != null and ${party.getPriceInEur()} != null">
+            <p>price</p>
+            <p th:text="|${party.getPricePresaleInEur()}&euro; (presale) / ${party.getPriceInEur()}&euro;|"></p>
+        </div>
+        <div class="infoLine" th:if="${party.getPriceInEur()} == null and ${party.getPricePresaleInEur()} == null">
+            <p>Free Party!</p>
+        </div>
+
+        <div class="infoLine">
+            <div class="infoLineName">door:</div>
+            <div class="infoLineValue"><p th:text="${party.getDoors() }"></p>
+
+            </div>
+        </div>
+        <div class="infoLine" th:if="${!party.getExtraInfo().isBlank()}">
+            <p>Extra info</p>
+            <p th:text="${party.getExtraInfo()}"></p>
+        </div>
+        <!--        </div>-->
+
+        <!--    </div>-->
+        <!--    <div class="row1content" th:unless="${party}">-->
+        <!--        <p>no party was chosen</p>-->
+    </div>
+</div>
 
 <div th:replace="fragments/footer :: footer">Footer</div>
-
 
 </body>
 </html>
