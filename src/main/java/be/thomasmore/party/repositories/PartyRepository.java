@@ -12,4 +12,5 @@ public interface PartyRepository extends CrudRepository <Party, Integer > {
     Optional<Party> findById(Integer Femke);
     @Query("select p from Party p where ?1 = p.venue ")
     Iterable<Party>findPartiesByVenue(Venue verake);
+
 }

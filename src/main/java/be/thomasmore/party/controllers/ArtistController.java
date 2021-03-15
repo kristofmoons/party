@@ -30,6 +30,7 @@ public class ArtistController {
             model.addAttribute("artist", optionalArtist.get());
             model.addAttribute("prevId", id > 1 ? id - 1 : nrOfArtists);
             model.addAttribute("nextId", id < nrOfArtists ? id + 1 : 1);
+            model.addAttribute("parties",optionalArtist.get().getParties());
 
         }
         return "artistdetails";

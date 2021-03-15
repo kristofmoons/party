@@ -41,6 +41,15 @@
             </div>
         </div>
 
+        <div class="venueinfo" th:unless="${parties.isEmpty() } ">
+
+            <h2> partys</h2>
+            <div th:each="party:${parties}"><a th:text="${party.getName()}"
+                                                           th:href="@{|../partydetails/${party.getId()}  |}">
+
+            </a></div>
+        </div>
+
     </div>
     <div class="row1content" th:unless="${artist}">
         <p>no artist was chosen</p>
