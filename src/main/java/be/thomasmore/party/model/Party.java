@@ -20,6 +20,7 @@ public class Party {
     private Venue venue;
     @ManyToMany
     Collection<Artist> artists;
+
     @ManyToMany(mappedBy = "parties")
     private Collection<Animal> animals;
 
