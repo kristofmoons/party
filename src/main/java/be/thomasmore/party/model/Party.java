@@ -8,6 +8,9 @@ import java.util.Date;
 
 @Entity
 public class Party {
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "party_generator")
+    @SequenceGenerator(name = "party_generator", sequenceName = "party_seq", allocationSize = 1)
     @Id
     private int id;
     private String name;
@@ -18,6 +21,7 @@ public class Party {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
     private Date doors;
     @ManyToOne(fetch = FetchType.LAZY)
     private Venue venue;
