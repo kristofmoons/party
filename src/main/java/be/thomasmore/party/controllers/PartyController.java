@@ -20,6 +20,12 @@ public class PartyController {
 
     private Logger logger = LoggerFactory.getLogger(VenueController.class);
 
+    @GetMapping("/partylist")
+    public String partyList(Model model) {
+        Iterable<Party> parties = partyRepository.findAll();
+        model.addAttribute("parties", parties);
+        return "partylist";
+    }
 
     @GetMapping({"/partydetails", "partydetails/{id}"})
     public String partyDetails(Model model,
