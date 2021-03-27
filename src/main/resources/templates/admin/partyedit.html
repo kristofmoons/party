@@ -33,6 +33,20 @@
                     Free Party!
                 </div>
                 <div class="infoLine">
+                    <label for="pricePresaleInEur" class="infoLineName">price (presale): </label>
+                    <input id="pricePresaleInEur" name="pricePresaleInEur" value="pricePresaleInEur" th:value="${party.pricePresaleInEur}" class="infoLineValue">
+                    &nbsp;&euro;
+                </div>
+                <div class="infoLine">
+                    <label for="priceInEur" class="infoLineName">price: </label>
+                    <input id="priceInEur" name="priceInEur" value="priceInEur" th:value="${party.priceInEur}" class="infoLineValue">
+                    &nbsp;&euro;
+                </div>
+                <div class="infoLine">
+                    <label for="extraInfo" class="infoLineName">extra info: </label>
+                    <input id="extraInfo" name="extraInfo" value="extraInfo" th:value="${party.extraInfo}" class="infoLineValue">
+                </div>
+                <div class="infoLine">
                     <div class="infoLineName">where:</div>
                     <div class="infoLineValue"
                          th:text="|${party.venue.city} (${party.venue.distanceFromPublicTransportInKm} km from public transport)|">
