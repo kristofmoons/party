@@ -1,7 +1,9 @@
 package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Party;
+import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.PartyRepository;
+import be.thomasmore.party.repositories.VenueRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,36 +21,37 @@ public class AdminController {
     @Autowired
     private PartyRepository partyRepository;
 
+    @Autowired
+    private VenueRepository venueRepository;
+
+    @ModelAttribute("party")
+    public Party findParty(@PathVariable Integer id) {
+        logger.info("findParty " + id);
+        Optional<Party> optionalParty = partyRepository.findById(id);
+        if (optionalParty.isPresent())
+            return optionalParty.get();
+        return null;
+    }
+
     @GetMapping("/partyedit/{id}")
     public String partyEdit(Model model,
                             @PathVariable int id) {
         logger.info("partyEdit " + id);
-        Optional<Party> optionalParty = partyRepository.findById(id);
-        if (optionalParty.isPresent()) {
-            model.addAttribute("party", optionalParty.get());
-        }
+        model.addAttribute("venues", venueRepository.findAll());
         return "admin/partyedit";
     }
 
     @PostMapping("/partyedit/{id}")
     public String partyEditPost(Model model,
                                 @PathVariable int id,
-                                @RequestParam String partyName,
-                                @RequestParam Integer pricePresaleInEur,
-                                @RequestParam Integer priceInEur,
-                                @RequestParam String extraInfo) {
-        logger.info("partyEditPost " + id + " -- new name=" + partyName);
-        Optional<Party> optionalParty = partyRepository.findById(id);
-        if (optionalParty.isPresent()) {
-            Party party = optionalParty.get();
-            party.setName(partyName);
-            party.setPricePresaleInEur(pricePresaleInEur);
-            party.setPriceInEur(priceInEur);
-            party.setExtraInfo(extraInfo);
-            partyRepository.save(party);
-            model.addAttribute("party", party);
+                                @ModelAttribute("party") Party party,
+                                @RequestParam int venueId) {
+        logger.info("partyEditPost " + id + " -- new name=" + party.getName());
+        if ( party.getVenue().getId() != venueId) {
+            party.setVenue(new Venue(venueId));
         }
-        return "redirect:/partydetails/"+id;
+        partyRepository.save(party);
+        return "redirect:/partydetails/" + id;
     }
 
 }
